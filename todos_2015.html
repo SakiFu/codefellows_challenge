@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Todos</title>
+        <style type="text/css">
+            body {
+               font-family: Helvetica;
+               font-size: 18px;
+            }
+            </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            $( document ).ready(function() {
+                $("button").click(function(){
+                var task = $("#task").val();
+                if (task.length > 0){
+                    $("ul").append('<li>' + task + '</li>');
+                    $("#todo")[0].reset();
+                    $("li").click(function(){
+                    $(this).remove();
+            　　　　　});
+        　　　　　}
+        　　　　　return false;
+　　　　　　　　　　});
+　　　　　　　　　　}); 
+        </script>
+    </head>
+    <body>
+        <h1>Todos List</h1>
+        <form id="todo">
+        <input type="text" id="task"/>
+        <button>Add</button>
+        </form>
+        <div class="todos">
+            <ul>
+            </ul>
+        </div>
+    </body>
+</html>
