@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='discription' content="Users"> 
+    {% load staticfiles %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'saki/saki.css' %}" /> 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+    <script>
+    //     $(document).ready(function(){
+    //         $(".img").click( function() {
+    //           $(this).fadeOut('normal');
+    // 　　　　　});
+
+
+
+        });
+    </script>
+    <title>User</title>
+</head>
+
+<body>
+    <div id='header'>
+        <div class='menu'>
+            <ul>
+                <li><a href="{% url 'saki:index'%}">Home</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>About</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Press</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Career</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Links</a><span style="margin-right: 1em;"></span></li>
+            </ul>
+        </div>
+        <div id='title-1'>
+            {% load staticfiles %}
+            <img src="{% static 'saki/nmr_2.png' %}" class="img" width='100px' height='70px'>
+            <h1><a href="{% url 'saki:index'%}">Users</a></h1>
+        </div>
+        <div id='title-2'>
+            <h2>Sample App</h2></div>
+    </div>
+    </div>
+
+    <div id='contents'>
+        <div id='article'>
+        {% block content %}<br>
+            <ul>
+            {% for user in object_list %}
+                <ul><h3>{{ user.first_name}} {{ user.last_name}}</h3>
+                    <li><img src = "{{user.thumbnail.url}}", width = "200"/></li>
+                    <li>{{ user.email|linebreaks }}</li>
+                    <br>
+                </ul>
+            {% endfor %}
+            </ul>
+         {% endblock %}
+        <div>
+    </div>
+</body>
