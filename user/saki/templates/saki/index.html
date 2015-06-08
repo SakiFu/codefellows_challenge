@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='discription' content="Django Sample Page"> 
+    {% load staticfiles %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'saki/saki.css' %}" /> 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+    <script>
+    //     $(document).ready(function(){
+    //         $(".img").click( function() {
+    //           $(this).fadeOut('normal');
+    // 　　　　　});
+
+
+
+        });
+    </script>
+    <title>Saki</title>
+</head>
+
+<body>
+    <div id='header'>
+        <div class='menu'>
+            <ul>
+                <li><a href='#'>Home</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>About</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Press</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Career</a><span style="margin-right: 1em;"></span></li>
+                <li><a href='#'>Links</a><span style="margin-right: 1em;"></span></li>
+            </ul>
+        </div>
+        <div id='title-1'>
+            {% load staticfiles %}
+            <img src="{% static 'saki/nmr_2.png' %}" class="img" width='100px' height='70px'>
+            <h1>User</h1>
+        </div>
+        <div id='title-2'>
+            <h2>Sample app</h2></div>
+    </div>
+    </div>
+
+    <div id='navi'>
+        <h2>Menu</h2>
+        <a class="btn" href="{% url 'saki:user'%}">Users</a>
+
+    </div>
+
+        <div id='contents'>
+        <p>This is my sample page. Users can create, edit, update, and destroy (delete) users.
+        Users first name, last name, and email address fields. First name is required. 
+        Email should be a valid email.</p>
+    </div>
+</body>
