@@ -6,20 +6,16 @@ class Coffeeshop(object):
 
     def greeting(self, menu):
         print "Welcome to Mole Rat's coffee house! How can I help you?"
-        raw_input()
         print "We have..."
-        raw_input()
         for drink in self.menu:
             print drink    #shows drinks they have
-        raw_input()
 
     def order_drink(self, drink):
         print "I will take {}.".format(drink.drink_name)
-        raw_input()
         print "${}, please.".format(drink.drink_price)
         raw_input()
         while True:
-            your_name = raw_input("What is your name?")
+            your_name = raw_input("What is your name? ")
             if len(your_name) > 0:
                 print "Ok Just a second!"
                 break
@@ -29,7 +25,6 @@ class Coffeeshop(object):
         raw_input()
         print "{}! This is your {}.".format(your_name, self.name)
             #give the drink, calling your name
-        raw_input()
 
 
 class Drink(object):
@@ -38,10 +33,26 @@ class Drink(object):
         self.drink_price = price
         self.calories = calories
         coffeeshop.menu.append(self.drink_name)
+        self.additives = []
 
+    def __str__(self):
+        additive_string = ""
+        for additive in self.additives:
+            additive_string += str(additive)
+        return "I got {} for ${}. {}.".format(self.drink_name, self.drink_price, additive_string)
+        
     def display_calories(self):
         print "This has {} calories..".format(self.calories)
-        raw_input()
+        if self.calories <= 30:
+            print "It's totally guilty free!"
+        elif self.calories >= 200:
+            print "Shoot it was too much.. I need to go to gym."
+        else:
+            print "It's not bad."
+
+    def add(self, additive):
+        self.additives.append(additive)
+        self.calories += additive.calories
 
 
 class Additive(object):
@@ -50,32 +61,8 @@ class Additive(object):
         self.calories = calories
         self.sweetness = sweetness
 
-    def add_calories(self, drink):
-        total_calories = drink.calories + self.calories
-        print 'The total calories are {}..'.format(total_calories)
-        # culculates total calorie intake and gives feedback
-        raw_input()
-        if total_calories <= 30:
-            print "It's totally guilty free!"
-            raw_input()
-        elif total_calories >= 200:
-            print "Shoot it was too much.. I need to go to gym."
-            raw_input()
-        else:
-            print "It's not bad."
-            raw_input()
-
-    def how_sweet(self):
-        print "This is {} sweet.".format(self.sweetness)
-        raw_input()
-
-    def display_calories(self):
-        print "I added {} calories".format(self.calories)
-        raw_input()
-
-    def display_flavor(self):
-        print "Smells {}.".format(self.name)
-        raw_input()
+    def __str__(self):
+        return "This is {} sweet and smells {}".format(self.sweetness, self.name)
 
 
 if __name__ == '__main__':
@@ -92,28 +79,32 @@ if __name__ == '__main__':
     lemonade = Drink('Lemonade', '3', nmr_coffee, calories=150)
 
     #additives they have
-    cinnamon = Additive('cinnamon', calories=2, sweetness='kind of')
-    brown_sugar = Additive('brown sugar', '30', 'pretty')
-    honey = Additive('honey', calories=20, sweetness='kind of')
+    cinnamon = Additive('cinnamon', 'kind of', 2)
+    brown_sugar = Additive('brown sugar', 'pretty', 30)
+    honey = Additive('honey', 'kind of', 20)
 
     #let's go to this coffeeshop
     nmr_coffee.greeting(nmr_coffee.menu)
+    raw_input()
     nmr_coffee.order_drink(mocha)
+    raw_input()
+    mocha.add(honey)
+    raw_input()
     mocha.display_calories()
-    honey.display_flavor()
-    honey.how_sweet()
-    honey.display_calories()
-    honey.add_calories(mocha)
+    raw_input()
+    print mocha
+    print honey
 
     #comes to the coffeeshop again
     print "Next day"
     raw_input()
 
     nmr_coffee.greeting(nmr_coffee.menu)
+    raw_input()
     nmr_coffee.order_drink(caramel_frappuchino)
+    raw_input()
+    caramel_frappuchino.add(cinnamon)
+    raw_input()
     caramel_frappuchino.display_calories()
-    cinnamon.display_flavor()
-    cinnamon.how_sweet()
-    cinnamon.display_calories()
-    cinnamon.add_calories(caramel_frappuchino)
-
+    raw_input()
+    print cinnamon
