@@ -23,7 +23,7 @@ class Coffeeshop(object):
                 print "What?"    #asks name until user inputs something
 
         raw_input()
-        print "{}! This is your {}.".format(your_name, self.name)
+        print "{}! This is your {}.".format(your_name, drink.drink_name)
             #give the drink, calling your name
 
 
